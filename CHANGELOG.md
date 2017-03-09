@@ -1,4 +1,5 @@
 Changelog
 
 alpha1.3.1
-- first version
+-first version
+-added repairAmount Handler for Crooks and Hammers 
