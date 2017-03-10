@@ -80,16 +80,16 @@ public class AddSifting extends BasicAction{
 			}
 		}
 		
-		if(valid) execute();
+		if(valid) for(ItemStack is : inputlist){
+			SieveRegistry.register(lib.getBlockFromItemStack(is),outputstack.getItem(),outputstack.getItemDamage(),rarity);
+		}
 		
 		return valid;
 	}
 	
 	@Override
 	public void execute(){
-		for(ItemStack is : inputlist){
-			SieveRegistry.register(lib.getBlockFromItemStack(is),outputstack.getItem(),outputstack.getItemDamage(),rarity);
-		}
+		
 	}
 	
 	
