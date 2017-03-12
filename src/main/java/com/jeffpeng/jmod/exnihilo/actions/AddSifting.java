@@ -35,16 +35,11 @@ public class AddSifting extends BasicAction{
 		this.input = input;
 		this.rarity = rarity;
 		this.valid = true;
-		
-		
-		
 	}
 	
 	@Override
 	public boolean on(FMLLoadCompleteEvent event){
 		if(!valid) return false;
-			
-		
 		Object ois = lib.stringToItemStack(output);
 		Object iis = lib.stringToItemStack(input);
 		
@@ -91,7 +86,4 @@ public class AddSifting extends BasicAction{
 	public void execute(){
 		
 	}
-	
-	
-
 }

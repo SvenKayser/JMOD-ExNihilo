@@ -1,14 +1,7 @@
 package com.jeffpeng.jmod.exnihilo.actions;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-
-
-
-
-
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -16,12 +9,10 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.jeffpeng.jmod.JMOD;
 import com.jeffpeng.jmod.JMODRepresentation;
-import com.jeffpeng.jmod.Lib;
 import com.jeffpeng.jmod.primitives.BasicAction;
 
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import exnihilo.registries.SieveRegistry;
-import exnihilo.registries.helpers.SiftReward;
 
 public class RemoveSifting extends BasicAction{
 	private String output;
