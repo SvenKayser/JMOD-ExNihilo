@@ -4,8 +4,10 @@ import net.minecraft.item.Item;
 
 import com.jeffpeng.jmod.JMODPlugin;
 import com.jeffpeng.jmod.JMODPluginContainer;
+import com.jeffpeng.jmod.forgeevents.JMODGetRepairAmountEvent;
 
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import exnihilo.items.ItemCrook;
 import exnihilo.items.hammers.ItemHammerBase;
 
@@ -16,12 +18,12 @@ public class Plugin extends JMODPlugin{
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Float getRepairAmount(Item item){
+	@SubscribeEvent
+	public void getRepairAmount(JMODGetRepairAmountEvent event){
+		Item item = event.getItem();
 		if(Loader.isModLoaded("exnihilo") && (item instanceof ItemHammerBase || item instanceof ItemCrook)){
-			return 1F/4F;
+			event.setRepairAmount(1F/4F);
 		}
-		return null;
 	}
 	
 	
