@@ -8,19 +8,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.jeffpeng.jmod.JMODRepresentation;
+import com.jeffpeng.jmod.descriptors.ItemStackDescriptor;
 import com.jeffpeng.jmod.primitives.BasicAction;
 
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import exnihilo.registries.SieveRegistry;
 
 public class AddSifting extends BasicAction{
-	private String output;
-	private String input;
+	private ItemStackDescriptor output;
+	private ItemStackDescriptor input;
 	private int rarity;
 	private ItemStack outputstack;
 	private List<ItemStack> inputlist = new ArrayList<>();
 	
-	public AddSifting(JMODRepresentation owner,String output, String input,int rarity) {
+	public AddSifting(JMODRepresentation owner,ItemStackDescriptor output, ItemStackDescriptor input,int rarity) {
 		super(owner);
 		
 		log.info("addsifting "+output+" "+input+" "+rarity);
@@ -40,10 +41,22 @@ public class AddSifting extends BasicAction{
 	@Override
 	public boolean on(FMLLoadCompleteEvent event){
 		if(!valid) return false;
-		Object ois = lib.stringToItemStack(output);
-		Object iis = lib.stringToItemStack(input);
+		ItemStack ois = output.toItemStack();
+		List<ItemStack> isl = input.getItemStackList();
 		
-		if(ois instanceof ItemStack){
+		if(ois != null) isl.forEach((v) -> {
+			Block block = lib.getBlockFromItemStack(v);
+			if(block != null) SieveRegistry.register(block,ois.getItem(),ois.getItemDamage(),rarity);
+			else log.warn(ois.toString() + "[ExNihilo/AddSifting] " + v + " from " + input + " doesn't have a block.");
+		});
+		
+		else log.warn(ois.toString() + "[ExNihilo/AddSifting] " + output + " doesn't translate to a valid output.");
+		
+		/*
+		
+		
+		
+		if(ois != null){
 			outputstack = (ItemStack)ois;
 		} else {
 			if(ois instanceof String && OreDictionary.doesOreNameExist((String)ois))	outputstack = lib.getFirstOreDictMatch(output);
@@ -77,7 +90,7 @@ public class AddSifting extends BasicAction{
 		
 		if(valid) for(ItemStack is : inputlist){
 			SieveRegistry.register(lib.getBlockFromItemStack(is),outputstack.getItem(),outputstack.getItemDamage(),rarity);
-		}
+		}*/
 		
 		return valid;
 	}

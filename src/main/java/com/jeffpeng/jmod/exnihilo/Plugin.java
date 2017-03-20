@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 
 import com.jeffpeng.jmod.JMODPlugin;
 import com.jeffpeng.jmod.JMODPluginContainer;
-import com.jeffpeng.jmod.forgeevents.JMODGetRepairAmountEvent;
+import com.jeffpeng.jmod.API.forgeevents.JMODGetRepairAmountEvent;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
